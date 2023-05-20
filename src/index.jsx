@@ -1,45 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import { render } from 'react-dom';
-import Candidate from './Candidate/index';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
 import './style.css';
 
 const App = () => {
-  const [candidates, setCandidates] = useState([]);
-  const [president, setPresident] = useState(null);
-
-  useEffect(() => setCandidates([
-    { name: "Ferdinand Mravenec", avatar: '/assets/candidate01.png' },
-    { name: "Markéta Smetana", avatar: '/assets/candidate02.png' },
-    { name: "Beáta Skočdopolová", avatar: '/assets/candidate03.png' },
-    { name: "Lubomír Poňuchálek", avatar: '/assets/candidate04.png' },
-  ]), []);
-  
   return (
     <div className="container">
-      <div className="castle">
-        <div className="castle__image"></div>
-        <div className="castle__body">
-          <h1>Nový prezident</h1>
-          <p className="castle__president">
-            {
-              president === null ? 'Vyberte svého kandidáta' : president
-            }
-          </p>
-        </div>
-      </div>
-      
-      <h2>Kandidátí</h2>
-      <div className="candidate-list">
-        {candidates.map((c) => (
-          <Candidate 
-            key={c.name}
-            name={c.name} 
-            avatar={c.avatar} 
-          />
-        ))}
-      </div>
+      <header>
+        <div className="logo" />
+        <h1>React webová aplikace</h1>
+      </header>
+      <main>
+        <p>
+          Startovací šablona pro webovou aplikaci v Reactu. Vytvořeno pomocí
+          <a href="https://www.npmjs.com/package/create-czechitas-app">create-czechitas-app</a>
+          .
+        </p>
+      </main>
+      <footer>
+        <p>Czechitas, Digitální akademie: Web</p>
+      </footer>
     </div>
   );
 };
 
-render(<App />, document.querySelector('#app'));
+createRoot(
+  document.querySelector('#app'),
+).render(<App />);
